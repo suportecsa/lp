@@ -10,13 +10,7 @@ import {
   Facebook,
   Twitter,
 } from "lucide-react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useAnimation,
-  useInView,
-} from "framer-motion";
+import { motion, useScroll, useInView } from "framer-motion";
 
 const testimonials = [
   {
