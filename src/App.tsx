@@ -253,7 +253,8 @@ function App() {
                 transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }} // Atraso de 0.4s, duração de 1.2s e easing suave
                 className="text-4xl md:text-5xl font-light leading-tight"
               >
-                Elevando autoestima através de Mulheres.
+                Tudo o que precisa. <br></br>Elevando autoestima através de
+                Mulheres.
               </motion.h1>
             </div>
 
