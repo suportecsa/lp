@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Menu,
   Search,
@@ -9,8 +9,9 @@ import {
   Instagram,
   Facebook,
   Twitter,
+  X,
 } from "lucide-react";
-import { motion, useScroll, useInView } from "framer-motion";
+import { motion, useScroll, useInView, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
@@ -90,12 +91,23 @@ const benefits = [
   },
 ];
 
-function Section({ children }: { children: React.ReactNode }) {
+// Definindo as seções do site para a navegação
+const sections = [
+  { id: "hero", name: "Início" },
+  { id: "benefits", name: "Benefícios" },
+  { id: "products", name: "Produtos" },
+  { id: "testimonials", name: "Depoimentos" },
+  { id: "newsletter", name: "Comunidade" },
+  { id: "instagram", name: "Instagram" },
+];
+
+function Section({ children, id }: { children: React.ReactNode; id?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
     <motion.section
+      id={id}
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -110,6 +122,7 @@ function Section({ children }: { children: React.ReactNode }) {
 function App() {
   const { scrollYProgress } = useScroll();
   const testimonialRef = useRef<HTMLDivElement>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     if (testimonialRef.current) {
@@ -117,6 +130,14 @@ function App() {
       testimonialRef.current.appendChild(clone);
     }
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsSearchOpen(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -134,7 +155,13 @@ function App() {
           <span className="text-sm hidden md:block">Natural</span>
         </div>
         <div className="flex items-center gap-4">
-          <Search className="w-5 h-5" />
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            className="flex items-center justify-center"
+            aria-label="Pesquisar"
+          >
+            <Search className="w-5 h-5" />
+          </button>
           <ShoppingBag className="w-5 h-5" />
           <Menu className="w-5 h-5 md:hidden" />
           <div className="hidden md:flex items-center gap-6">
@@ -151,8 +178,54 @@ function App() {
         </div>
       </nav>
 
+      {/* Search Modal */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsSearchOpen(false)}
+          >
+            <motion.div
+              className="bg-white rounded-lg w-full max-w-md overflow-hidden"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-4 flex justify-between items-center border-b">
+                <h3 className="font-medium">Navegação Rápida</h3>
+                <button
+                  onClick={() => setIsSearchOpen(false)}
+                  className="p-1 rounded-full hover:bg-gray-100"
+                  aria-label="Fechar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-2">
+                {sections.map((section) => (
+                  <button
+                    key={section.id}
+                    onClick={() => scrollToSection(section.id)}
+                    className="w-full text-left p-3 hover:bg-gray-50 rounded-md flex items-center gap-3 transition-colors"
+                  >
+                    <span className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs">
+                      {section.name.charAt(0)}
+                    </span>
+                    <span>{section.name}</span>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Hero Section */}
-      <Section>
+      <Section id="hero">
         <div className="grid md:grid-cols-2 gap-8 md:gap-4">
           <div className="flex flex-col justify-between h-[60vh] md:h-[80vh] order-2 md:order-1">
             <div className="space-y-6">
@@ -208,7 +281,7 @@ function App() {
       </Section>
 
       {/* Benefits Section */}
-      <Section>
+      <Section id="benefits">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-light mb-4">Por que nos escolher ?</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -240,7 +313,7 @@ function App() {
       </Section>
 
       {/* Products Section */}
-      <Section>
+      <Section id="products">
         <div>
           <div className="flex justify-between items-end mb-12">
             <h2 className="text-3xl font-light">Produtos Destaque</h2>
@@ -278,7 +351,7 @@ function App() {
       </Section>
 
       {/* Testimonials Section */}
-      <Section>
+      <Section id="testimonials">
         <div className="overflow-hidden">
           <h2 className="text-3xl font-light mb-12 text-center">
             O que as pessoas costumam dizer
@@ -316,7 +389,7 @@ function App() {
       </Section>
 
       {/* Newsletter Section */}
-      <Section>
+      <Section id="newsletter">
         <div className="bg-gray-50 py-20 px-4 md:px-6 rounded-2xl">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-light mb-6">
@@ -341,7 +414,7 @@ function App() {
       </Section>
 
       {/* Instagram Feed Section */}
-      <Section>
+      <Section id="instagram">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-light mb-4">Nos siga @natural</h2>
           <p className="text-gray-600">
