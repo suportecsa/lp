@@ -4,7 +4,6 @@ import {
   Search,
   Star,
   ArrowRight,
-  ShoppingBag,
   Heart,
   Instagram,
   Facebook,
@@ -15,56 +14,67 @@ import { motion, useScroll, useInView, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    role: "Entusiasta da Beleza",
-    text: "Os produtos transformaram completamente minha rotina de cuidados com a pele. Minha pele nunca esteve tão boa!",
+    name: "Ana Clara Santos",
+    role: "Paciente de Limpeza de Pele",
+    text: "A limpeza de pele na clínica foi incrível! Minha pele ficou macia, renovada e sem impurezas. Recomendo demais!",
     image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
   },
   {
-    name: "Emily Davis",
-    role: "Maquiadora Profissional",
-    text: "Como maquiadora profissional, sou muito exigente com skincare. Esses produtos superam todas as expectativas.",
+    name: "Carlos Eduardo Lima",
+    role: "Paciente de Tratamento Anti-Idade",
+    text: "Fiz o tratamento anti-idade e estou maravilhado com os resultados. Minha pele está mais firme e jovem. Equipe super profissional!",
     image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
   },
   {
-    name: "Michelle Wong",
-    role: "Dermatologista",
-    text: "Eu recomendo esses produtos para meus clientes. Os resultados falam por si só.",
+    name: "Mariana Costa",
+    role: "Paciente de Terapia de Luz Pulsada (IPL)",
+    text: "A terapia de luz pulsada foi um divisor de águas para mim. Minhas manchas diminuíram significativamente e minha pele está radiante!",
     image:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+  },
+  {
+    name: "Fernanda Oliveira",
+    role: "Paciente de Drenagem Linfática",
+    text: "A drenagem linfática facial é relaxante e eficiente. Percebi uma melhora incrível no inchaço e na textura da minha pele.",
+    image:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
   },
 ];
 
 const products = [
   {
-    name: "Limpador Facial",
-    description: "Limpador diário para sua pele macia e feliz.",
-    price: "$29",
+    name: "Limpeza de Pele Profunda",
+    description:
+      "Tratamento de limpeza facial para remover impurezas e revitalizar a pele.",
+    price: "$120",
     image:
-      "https://images.unsplash.com/photo-1611861317409-7dcc62856a8a?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1598300188904-6287d52746ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "Vitamina C",
-    description: "Antioxidante poderoso para sua pele",
-    price: "$45",
+    name: "Tratamento Anti-Idade",
+    description:
+      "Sessão de rejuvenescimento facial com técnicas avançadas para reduzir rugas e linhas de expressão.",
+    price: "$200",
     image:
-      "https://images.unsplash.com/photo-1618120508902-c8d05e7985ee?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1596740926849-2d473dee8d60?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "Serum",
-    description: "Formula anti-idade",
-    price: "$65",
+    name: "Terapia de Luz Intensa Pulsada (IPL)",
+    description:
+      "Tratamento para manchas, vasinhos e rejuvenescimento com tecnologia de luz pulsada.",
+    price: "$300",
     image:
-      "https://images.unsplash.com/photo-1696025522422-aa9a74e4f3d5?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1555820585-c5ae44394b79?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
-    name: "Controle de Acne",
-    description: "Antiacne poderoso para sua pele",
-    price: "$95",
+    name: "Drenagem Linfática Facial",
+    description:
+      "Massagem facial para reduzir inchaço, melhorar a circulação e promover o bem-estar da pele.",
+    price: "$90",
     image:
-      "https://images.unsplash.com/photo-1614858819016-2d5e6006f29a?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1551184451-76b762941ad6?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
 
@@ -72,7 +82,7 @@ const benefits = [
   {
     title: "Natural Ingredientes",
     description:
-      "Ingredientes 100% orgânicos e naturais provenientes de fazendas sustentáveis",
+      "Ingredientes 100% orgânicos e naturais provenientes sustentáveis",
     image:
       "https://i.pinimg.com/736x/16/63/71/1663714c32769f23cdf807d704263abc.jpg",
   },
@@ -95,7 +105,7 @@ const benefits = [
 const sections = [
   { id: "hero", name: "Início" },
   { id: "benefits", name: "Benefícios" },
-  { id: "products", name: "Produtos" },
+  { id: "products", name: "Serviços" },
   { id: "testimonials", name: "Depoimentos" },
   { id: "newsletter", name: "Comunidade" },
   { id: "instagram", name: "Instagram" },
@@ -150,9 +160,9 @@ function App() {
       <nav className="flex justify-between items-center p-4 md:p-6 sticky top-0 bg-white/80 backdrop-blur-sm z-40">
         <div className="flex items-center gap-4">
           <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-            <span className="text-white text-sm">N</span>
+            <span className="text-white text-sm">K</span>
           </div>
-          <span className="text-sm hidden md:block">Natural</span>
+          <span className="text-sm hidden md:block">Kaes Estetica</span>
         </div>
         <div className="flex items-center gap-4">
           <button
@@ -162,11 +172,11 @@ function App() {
           >
             <Search className="w-5 h-5" />
           </button>
-          <ShoppingBag className="w-5 h-5" />
+
           <Menu className="w-5 h-5 md:hidden" />
           <div className="hidden md:flex items-center gap-6">
             <a href="#" className="text-sm hover:text-gray-600">
-              Compra
+              Início
             </a>
             <a href="#" className="text-sm hover:text-gray-600">
               Sobre
@@ -235,15 +245,15 @@ function App() {
                 transition={{ delay: 0.2 }}
                 className="text-sm"
               >
-                Mágica Natural
+                Kaes Estetica
               </motion.p>
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                initial={{ opacity: 0, y: 20, filter: "blur(12px)" }} // Texto começa invisível, deslocado 20px para baixo e com blur
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} // Texto termina visível, no lugar e sem blur
+                transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }} // Atraso de 0.4s, duração de 1.2s e easing suave
                 className="text-4xl md:text-5xl font-light leading-tight"
               >
-                Desbloqueie sua beleza interior com nossa coleção de autocuidado
+                Elevando autoestima através de Mulheres.
               </motion.h1>
             </div>
 
@@ -254,10 +264,10 @@ function App() {
               className="space-y-4"
             >
               <button className="w-full md:w-auto bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors">
-                Comece as Compras
+                Venha nos Conhecer
               </button>
               <p className="text-xs text-gray-500">
-                *Frete qualificado gratuito e devoluções
+                *Consulte os preços dos nossos serviços
               </p>
             </motion.div>
           </div>
@@ -269,12 +279,12 @@ function App() {
             className="relative h-[40vh] md:h-[80vh] order-1 md:order-2"
           >
             <img
-              src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+              src="https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Beauty product"
               className="w-full h-full object-cover rounded-lg"
             />
             <div className="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-full">
-              <span className="text-sm">/Products</span>
+              <span className="text-sm">Kaes </span>
             </div>
           </motion.div>
         </div>
@@ -316,7 +326,7 @@ function App() {
       <Section id="products">
         <div>
           <div className="flex justify-between items-end mb-12">
-            <h2 className="text-3xl font-light">Produtos Destaque</h2>
+            <h2 className="text-3xl font-light">Serviços Destaque</h2>
             <button className="text-sm hover:underline">Veja tudo</button>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -342,7 +352,7 @@ function App() {
                 <p className="text-gray-600 mb-2">{product.description}</p>
                 <div className="flex justify-between items-center">
                   <p className="font-medium">{product.price}</p>
-                  <button className="text-sm underline">Comprar</button>
+                  <button className="text-sm underline">Fazer orçamento</button>
                 </div>
               </motion.div>
             ))}
@@ -416,19 +426,19 @@ function App() {
       {/* Instagram Feed Section */}
       <Section id="instagram">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-light mb-4">Nos siga @natural</h2>
+          <h2 className="text-3xl font-light mb-4">Nos siga @kaesestetica</h2>
           <p className="text-gray-600">
             Junte-se à nossa comunidade e compartilhe sua jornada de beleza
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[...Array(4)].map((insta, i) => (
+          {[...Array(2)].map((insta, i) => (
             <div key={i} className="aspect-square rounded-lg overflow-hidden">
               <img
-                src={`https://images.unsplash.com/photo-1739467372234-2aba33f6b7ee?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-${1550000000000 + i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80`}
+                src={`https://images.unsplash.com/photo-1551184451-76b762941ad6?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-${1550000000000 + i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80`}
                 alt="Instagram post"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-              />
+              />{" "}
             </div>
           ))}
         </div>
@@ -441,9 +451,9 @@ function App() {
             <div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm">NL</span>
+                  <span className="text-white text-sm">K</span>
                 </div>
-                <span className="text-sm">Natural</span>
+                <span className="text-sm">Kaes Estetica</span>
               </div>
               <p className="text-gray-600 text-sm">
                 Descubra sua beleza natural com nossa coleção premium de
@@ -458,7 +468,7 @@ function App() {
                     href="#"
                     className="text-gray-600 hover:text-black text-sm"
                   >
-                    Todos os Produtos
+                    Todos os Serviços
                   </a>
                 </li>
                 <li>
@@ -540,7 +550,7 @@ function App() {
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-200">
             <p className="text-sm text-gray-600 mb-4 md:mb-0">
-              © 2025 Natural. Todos direitos reservados. João Reis.
+              © 2025 Kaes Estetica. Todos direitos reservados.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-gray-600 hover:text-black">
