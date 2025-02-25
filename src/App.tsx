@@ -280,6 +280,7 @@ function App() {
             className="relative h-[40vh] md:h-[80vh] order-1 md:order-2"
           >
             <img
+              loading="lazy"
               src="https://images.unsplash.com/photo-1552693673-1bf958298935?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Beauty product"
               className="w-full h-full object-cover rounded-lg"
@@ -311,6 +312,7 @@ function App() {
             >
               <div className="relative h-48 mb-6 rounded-lg overflow-hidden">
                 <img
+                  loading="lazy"
                   src={benefit.image}
                   alt={benefit.title}
                   className="w-full h-full object-cover"
@@ -341,6 +343,7 @@ function App() {
               >
                 <div className="relative overflow-hidden rounded-lg mb-4">
                   <img
+                    loading="lazy"
                     src={product.image}
                     alt={product.name}
                     className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
@@ -375,6 +378,7 @@ function App() {
               >
                 <div className="flex items-center gap-4 mb-4">
                   <img
+                    loading="lazy"
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full object-cover"
@@ -436,6 +440,7 @@ function App() {
           {[...Array(2)].map((insta, i) => (
             <div key={i} className="aspect-square rounded-lg overflow-hidden">
               <img
+                loading="lazy"
                 src={`https://images.unsplash.com/photo-1551184451-76b762941ad6?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-${1550000000000 + i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80`}
                 alt="Instagram post"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"

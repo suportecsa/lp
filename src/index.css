@@ -40,3 +40,14 @@ html {
   background-color: #d6e7ed;
   color: black; /* Opcional para Firefox */
 }
+.animate-scroll {
+  will-change: transform;
+}
+.hover-transition {
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+section {
+  contain: layout paint;
+}
