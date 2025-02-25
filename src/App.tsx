@@ -58,6 +58,13 @@ const products = [
     image:
       "https://images.unsplash.com/photo-1696025522422-aa9a74e4f3d5?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
+  {
+    name: "Controle de Acne",
+    description: "Antiacne poderoso para sua pele",
+    price: "$95",
+    image:
+      "https://images.unsplash.com/photo-1614858819016-2d5e6006f29a?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
 ];
 
 const benefits = [
@@ -114,7 +121,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-black origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-blue-400 origin-left z-50"
         style={{ scaleX: scrollYProgress }}
       />
 
@@ -342,10 +349,10 @@ function App() {
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[...Array(4)].map((_, i) => (
+          {[...Array(4)].map((insta, i) => (
             <div key={i} className="aspect-square rounded-lg overflow-hidden">
               <img
-                src={`https://images.unsplash.com/photo-${1550000000000 + i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80`}
+                src={`https://images.unsplash.com/photo-1739467372234-2aba33f6b7ee?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-${1550000000000 + i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80`}
                 alt="Instagram post"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
               />
@@ -371,7 +378,7 @@ function App() {
               </p>
             </div>
             <div>
-              <h3 className="font-medium mb-4">Shop</h3>
+              <h3 className="font-medium mb-4">Compras</h3>
               <ul className="space-y-2">
                 <li>
                   <a
@@ -400,7 +407,7 @@ function App() {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium mb-4">About</h3>
+              <h3 className="font-medium mb-4">Sobre</h3>
               <ul className="space-y-2">
                 <li>
                   <a
@@ -429,7 +436,7 @@ function App() {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium mb-4">Contact</h3>
+              <h3 className="font-medium mb-4">Contato</h3>
               <ul className="space-y-2">
                 <li>
                   <a
